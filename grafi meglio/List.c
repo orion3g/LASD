@@ -33,4 +33,39 @@ List appendNodeList(List L, int key, int peso) {
     return L;
 }
 
+// Rimuove solo un occorrenza di un nodo con il key specificato (nodo in cui entra)
+// dalla lista
+// La funzione ritorna sempre la testa della lista
 
+List removeNodeList(List L, int key) {
+    if (L != NULL) {
+        if (L->key == key) {
+            List tmp = L->next;
+            free(L);
+            return tmp;
+        }
+        
+        
+        else 
+        
+        L->next = removeNodeList(L->next, key);
+    }
+    
+    return L;
+}
+
+
+void freeList(List L) {
+    if (L != NULL) {
+        freeList(L->next);
+        free(L);
+    }
+}
+
+
+void printList(List L) {
+    if (L != NULL) {
+        printf(" %d(%d) ", L->target, L->peso);
+        printList(L->next);
+    }
+}

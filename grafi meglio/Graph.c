@@ -36,7 +36,51 @@ void addNode(Graph G) {
     }
 }
 
+//Rimuove un arco, specificando sorgente e key:sorgente(nodo in cui esce), key(nodo in cui entra)
+void removeEdge(Graph G, int source, int key) {
+	    assert(G != NULL);
+	    if (source != key) {
+        G->adj[source] = removeNodeList(G->adj[source], key);
+    }
+}
 
+
+// Rimuovi un nodo dal grafo, sistemando
+// gli indici e riallocando la memoria
+
+void removeNode(Graph G, int node_to_remove) {
+    if (G != NULL) {
+        int i = 0;
+        int x = 0;
+        List *tmp = G->adj;
+        G->adj = calloc(G->nodes_count, sizeof(List));
+        for (i = 0; i <= G->nodes_count; i++) {
+            if (i != node_to_remove) {
+                G->adj[x] = checkListRemoval(tmp[i], node_to_remove);
+                x++;
+            } else {
+                freeList(G->adj[x]);
+            }
+        }
+        free(*tmp);
+        G->nodes_count -= 1;
+    }
+}
+
+
+List checkListRemoval(List L, int node_to_remove) {
+    if (L != NULL) {
+        L->next = checkListRemoval(L->next, node_to_remove);
+        if (L->target == node_to_remove) {
+            List tmp = L->next;
+            free(L);
+            return tmp;
+        } else if (L->target > node_to_remove) {
+            L->target -= 1;
+        }
+    }
+    return L;
+}
 
 void graphEditorMenu(Graph G) { //Effettua modifiche varie nel grafo G, chiamabile anche se il grafo era preesistente
 	
