@@ -21,13 +21,4 @@ int main () {
 	printGraph(G);
 	
 	
-	elimina_nodi_grado_dispari(G);
-
-	elimina_archi_pari(G);
-	
-    printf("dopo \n");
-    printGraph(G);
-	
-	
-	
-}
+   }

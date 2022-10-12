@@ -14,5 +14,3 @@ void removeEdge (Graph G, int source, int key);
 void deleteNode(Graph G, int nodoDaEliminare);
 List checkListNode(List L, int nodoDaEliminare);
 void printGraph(Graph G);
-void elimina_archi_pari (Graph G);
-void elimina_nodi_grado_dispari(Graph G);

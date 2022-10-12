@@ -116,58 +116,6 @@ List checkListNode(List L, int nodoDaEliminare) {
 	
 }
 
-void elimina_archi_pari (Graph G) {
-	 int i;
-	for (i=0;i<G->num_v;i++) {
-		List tmp=G->adj[i];
-		while(tmp!=NULL)
-		{
-			if(tmp->peso%2==0)
-			{
-				removeEdge (G, i, tmp->key);
-				}
-			
-
-               tmp=tmp->next;
-			}
-	
-	
-	
-}
-	
-	
-}
-
-void elimina_nodi_grado_dispari(Graph G) {
-	
-	int i;
-	int grado=0;
-	
-	
-	for (i=0;i<G->num_v;i++){
-		List tmp=G->adj[i];
-		while(tmp!=NULL) {
-		
-		grado++;
-
-         tmp=tmp->next;
-         
-	 }
-	 
-	 if(grado%2!=0){
-		
-		deleteNode(G, i); 
-		
-	}
-	 
-		}
-	
-	
-	
-	
-}
-
-
 void printGraph(Graph G) {
 	
 	for (int i=0; i<G->num_v;i++) {
