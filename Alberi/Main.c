@@ -1,26 +1,25 @@
 #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include "Alberi.h"
 
+int main()
+{
+    Tree T;
+    T=randomTree(8);
+    T=insertNodeTree (T, 6); 
+    inOrder(T);
+    
+    if(ricerca_ricorsivo(T, 7)) {
+    printf("TROVATO!");}
+    
+    else 
+    
+    printf("NON TROVATO!");
+    
 
-int main () {
-
-Tree T = NULL;
-
-//inserisco numeri da 1 a 10 nell'albero
-for (i = 1; i <= 10; i++) {
-        T = insertNodeTree(T, i);
-		
-		
+    return 0;
 }
-
-}
-
-
-
-
-
-
 
 
 
