@@ -18,19 +18,18 @@ return e;
 
 Lista mettiCoda (int x, Lista lista) {
 	
-   Lista nuovo=NULL; //puntatore a tipo lista=NULL
-   Lista testa;      //puntatore a tipo lista
+   Lista nuovo, tmp;
   
    if  (lista!=NULL) {  //ovvero se già ci sono elementi nella lista
 	    
-	  for(testa=lista;lista->next!=NULL;lista=lista->next); //itera fino all'ultim elemento della lista
+	  for(tmp=lista;tmp->next!=NULL;tmp=tmp->next); //itera fino all'ultim elemento della lista
 	  
 	  
 	  nuovo=newelem(x);   //nuovo punterà al un nuovo elemento allocato
-	  nuovo->prec=lista;  //nuovo->prec punterà alla lista ovvero all'ultimo elemento iterato prima
+	  nuovo->prec=tmp;  //nuovo->prec punterà a tmp ovvero all'ultimo elemento iterato prima
 	  nuovo->info=x;
 	  nuovo->next=NULL;   
-
+      tmp->next=nuovo; 
   }
 	
    else
@@ -38,14 +37,11 @@ Lista mettiCoda (int x, Lista lista) {
    lista=newelem(x);
    lista->info=x;
    lista->prec=NULL;
-   testa=lista;
-		 
+   lista->next=NULL; 
 }
 
-//in ogni caso lista->next sarà uguale a nuovo, che, nel caso in cui prima fosse stata vuota e quindi non si accoda a niente
-//mentre nel caso in cui fosse piena lista->next punterà al nuovo elemento inserito 
-lista->next=nuovo;
-return testa;
+
+return lista;
 
 
 }
@@ -92,47 +88,62 @@ void visualizza_lista(Lista lista) {
 	
 	
 	
-}
+} 
 
 Lista eliminare_elemento (Lista lista, int elemento_eliminare) {
 	
-	Lista testa, nodo;
-	testa=lista;
+	Lista tmp=lista;
+	Lista nodo;
+
 	
-	while(lista!=NULL) {
+	while(tmp!=NULL) {
 		
-		if((lista->info==elemento_eliminare) && (lista->prec==NULL) ){
-			nodo=lista;
-			testa=nodo->next;
-			nodo->next->prec=NULL;
+		if((tmp->info==elemento_eliminare) && (tmp->prec==NULL) ){
+			nodo=tmp;
+			tmp->next->prec=NULL;
+			lista=tmp->next;
 			free(nodo);
+			
             
  			}
 		
 		
-		else if ((lista->info==elemento_eliminare) && (lista->prec!=NULL))
+		else if ((tmp->info==elemento_eliminare) && (tmp->prec!=NULL))
 		
 		{
-			nodo=lista;
-			nodo->prec->next=nodo->next;
-			nodo->next->prec=nodo->prec;
+			nodo=tmp;
 			
+			if(tmp->next!=NULL) //se non è l'ultimo elemento
+			{
+			tmp->prec->next=tmp->next;
+			tmp->next->prec=tmp->prec;
 			
 			}
 		
-		else
+		else //se è l'ultimo elemento
 		
 		
 		{
-			lista=lista->next;
-			
+			tmp->prec->next=tmp->next;
 			
 			}
+		
+					tmp=tmp->next;
+					free(nodo);
+
+		}
+		
+		else {
+			
+			tmp=tmp->next;
+			
+			}
+		
 		
 		
 		}
 	
 	
-	return testa;
+	return lista;
 	
 }

@@ -1,7 +1,7 @@
 #include <stdio.h> 
 #include <stdlib.h>
 #include <malloc.h>
-#include "liste_doppie.h"
+#include "liste_doppie_circolari.h"
 
 
 int main () 
@@ -13,17 +13,14 @@ int main ()
 	L=mettiCoda (4, L) ;
 	L=mettiCoda (6, L) ;
 	L=mettiCoda (7, L) ;
-	L=mettiCoda (88, L) ;
+
+    //printf("%d", L->prec->info);
 	
 	visualizza_lista(L);
 	printf("\n");
-	
-	L=inserire_elemento(L, 60, 3);
-	
-    visualizza_lista(L);
-    
-    printf("\n");
-    L=eliminare_elemento(L, 88);
+
+  
+    L=eliminare_elemento(L, 1);
 
     visualizza_lista(L);
 
