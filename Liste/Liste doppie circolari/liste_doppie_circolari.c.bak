@@ -9,6 +9,7 @@ Lista newelem (int x) {
         
 Lista e;
 e=malloc(sizeof(struct elemento));
+        
 e->info=x;
         
 return e;
