@@ -21,8 +21,7 @@ Lista mettiCoda (int x, Lista lista) {
   
    if  (lista!=NULL) {  //ovvero se già ci sono elementi nella lista
 	    
-	  for(tmp=lista;tmp->next!=lista;tmp=tmp->next); //itera fino all'ultim elemento della lista
-	  
+	  for(tmp=lista;tmp->next!=lista;tmp=tmp->next); //itera fino all'ultimo elemento della lista
 	  
 	  nuovo=newelem(x);   //nuovo punterà al un nuovo elemento allocato
 	  nuovo->prec=tmp;  //nuovo->prec punterà a tmp ovvero all'ultimo elemento iterato prima
