@@ -14,8 +14,9 @@ Tree insertNodeTree (Tree T, int info);
 int riconosci_ABR (Tree T);
 int ricerca_minimo (Tree T);
 int ricerca(Tree T, int r);
-
-
+void inOrder(Tree T);
+void preOrder(Tree T);
+void postOrder(Tree T);
 
 int main () {
 	
@@ -129,3 +130,28 @@ int ricerca_minimo (Tree T) {
 	
 	
 }
+
+void inOrder(Tree T) {
+    if (T!=NULL) {
+        inOrder(T->sx);
+        printf("%d ", T->info);
+        inOrder(T->dx);
+    }
+}
+
+void preOrder(Tree T) {
+  if (T!=NULL) {
+        printf("%d ", T->info);
+        preOrder(T->sx);
+        preOrder(T->dx);
+    }
+}
+
+void postOrder(Tree T) {
+    if (T!=NULL) {
+        postOrder(T->sx);
+        postOrder(T->dx);
+        printf("%d ", T->info);
+    }
+}
+
